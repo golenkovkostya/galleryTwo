@@ -9,7 +9,7 @@ import android.support.v4.view.ViewPager;
 
 import com.example.galleryTwo.Const;
 import com.example.galleryTwo.bean.MyImageBean;
-import com.example.gallerytwo.R;
+import com.example.galleryTwo.R;
 
 public class MainActivity extends FragmentActivity {
 

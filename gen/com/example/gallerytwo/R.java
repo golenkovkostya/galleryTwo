@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.example.gallerytwo;
+package com.example.galleryTwo;
 
 public final class R {
     public static final class attr {
