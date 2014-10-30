@@ -57,8 +57,21 @@ public class MyImageBean implements Parcelable {
 		dest.writeString(title);
 	}
 	
-	private MyImageBean(Parcel parcel) {
-		url = parcel.readString();
-		title = parcel.readString();
+	public static final Parcelable.Creator<MyImageBean> CREATOR = new Parcelable.Creator<MyImageBean>() {
+
+		@Override
+		public MyImageBean createFromParcel(Parcel source) {
+			return new MyImageBean(source);
+		}
+
+		@Override
+		public MyImageBean[] newArray(int size) {
+			return new MyImageBean[size];
+		}
+	};
+	
+	private MyImageBean(Parcel source) {
+		url = source.readString();
+		title = source.readString();
 	}
 }
