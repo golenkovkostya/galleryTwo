@@ -48,9 +48,6 @@ public class PageFragment extends Fragment {
 			Bundle savedInstanceState) {
 
 		View view = inflater.inflate(R.layout.fragment, container, false);
-		TextView titileViewPage = (TextView) view
-				.findViewById(R.id.titleViewPage);
-		titileViewPage.setText(imageBean.getTitle());
 
 		final ProgressBar pb = (ProgressBar) view
 				.findViewById(R.id.loading_indicator);

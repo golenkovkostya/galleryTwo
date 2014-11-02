@@ -7,7 +7,10 @@ import java.util.List;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewPager;
+import android.view.ViewParent;
+import android.widget.TextView;
 
 import com.example.galleryTwo.Const;
 import com.example.galleryTwo.bean.MyImageBean;
@@ -19,10 +22,12 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements ViewPager.OnPageChangeListener {
 
 	ViewPager vPager;
 	GalleryPageAdapter galleryPageAdapter;
+	int imageListSize;
+	List<MyImageBean> imageList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,7 @@ public class MainActivity extends FragmentActivity {
 //		
 //		List<MyImageBean> imageList = intent.getParcelableArrayListExtra(Const.IMAGE_LIST_NAME);
 		
-		List<MyImageBean> imageList = new ArrayList<MyImageBean>();
+		imageList = new ArrayList<MyImageBean>();
 		imageList.add(new MyImageBean("https://lh4.googleusercontent.com/-WIuWgVcU3Qw/URqubRVcj4I/AAAAAAAAAbs/YvbwgGjwdIQ/s1024/Antelope%252520Walls.jpg", "image 1"));
 		imageList.add(new MyImageBean("https://lh3.googleusercontent.com/-PyggXXZRykM/URquh-kVvoI/AAAAAAAAAbs/hFtDwhtrHHQ/s1024/Colorado%252520River%252520Sunset.jpg", "image 2"));
 		imageList.add(new MyImageBean("https://lh4.googleusercontent.com/-EIBGfnuLtII/URquqVHwaRI/AAAAAAAAAbs/FA4McV2u8VE/s1024/Grand%252520Teton.jpg", "image 3"));
@@ -59,10 +64,31 @@ public class MainActivity extends FragmentActivity {
 		imageList.add(new MyImageBean("https://lh6.googleusercontent.com/-h-ALJt7kSus/URqvIThqYfI/AAAAAAAAAbs/ejiv35olWS8/s1024/Tokyo%252520Heights.jpg", "image 9"));
 		imageList.add(new MyImageBean("https://lh5.googleusercontent.com/-kI_QdYx7VlU/URqvLXCB6gI/AAAAAAAAAbs/N31vlZ6u89o/s1024/Yet%252520Another%252520Rockaway%252520Sunset.jpg", "image 10"));
 		
+		this.imageListSize = imageList.size();
+		
 		galleryPageAdapter = new GalleryPageAdapter(getSupportFragmentManager(), imageList);
 		
 		vPager = (ViewPager)findViewById(R.id.pager);
-		
 		vPager.setAdapter(galleryPageAdapter);
+		vPager.setOnPageChangeListener(this);
+		
+		this.onPageSelected(0);
+	}
+
+	@Override
+	public void onPageScrollStateChanged(int arg0) {
+	}
+
+	@Override
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+	}
+
+	@Override
+	public void onPageSelected(int positionIndex) {
+		TextView titileViewPage = (TextView)findViewById(R.id.titleViewPage);
+		titileViewPage.setText(imageList.get(positionIndex).getTitle());
+		
+		TextView imageCounter = (TextView)findViewById(R.id.imageCounter);
+		imageCounter.setText(String.format(getString(R.string.imageCounter), ++positionIndex, imageListSize));
 	}
 }
