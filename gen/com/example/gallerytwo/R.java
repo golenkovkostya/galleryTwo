@@ -16,8 +16,8 @@ public final class R {
     }
     public static final class id {
         public static final int imageCounter=0x7f060001;
-        public static final int imageView=0x7f060004;
-        public static final int loading_indicator=0x7f060003;
+        public static final int imageView=0x7f060003;
+        public static final int loading_indicator=0x7f060004;
         public static final int pager=0x7f060002;
         public static final int titleViewPage=0x7f060000;
     }

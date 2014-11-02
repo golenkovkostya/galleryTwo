@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.example.galleryTwo.R;
 import com.example.galleryTwo.bean.MyImageBean;
@@ -16,7 +15,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 public class PageFragment extends Fragment {
@@ -74,15 +72,8 @@ public class PageFragment extends Fragment {
 							Bitmap arg2) {
 						pb.setVisibility(View.GONE);
 					}
-				}, new ImageLoadingProgressListener() {
-					@Override
-					public void onProgressUpdate(String imageUri, View view,
-							int current, int total) {
-						pb.setProgress(Math.round(100.0f * current / total));
-					}
 				});
 
 		return view;
-
 	}
 }
